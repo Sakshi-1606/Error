@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Error</title>
+  <link rel="stylesheet" href="styleserror.css"/>
+</head>
+<body>
+<div class="header">
+  <h1>Add Error</h1>
+</div>
+
+<p><span class="mandatory">*</span>All fields are mandatory</p>
+
+<form method="post" action="/error">
+  <h4>Add Source Error Details</h4>
+  <div class="form-group">
+    <label for="eType">Error Type:</label>
+    <label for="sECode">Source Error Code:</label>
+  </div>
+
+  <div class="form-group">
+    <input type="text" id="eType" name="eType" class="half-width" required placeholder="Select Error Type" />
+    <input type="text" id="sECode" name="sECode" class="half-width" required placeholder="Enter Source Error Code (E.g. 590)" />
+  </div>
+
+  <div class="form-group">
+    <label for="sePhrase">Source Error Phrase:</label>
+  </div>
+
+  <div class="form-group">
+    <input type="text" id="sePhrase" required name="sePhrase" class="full-width" />
+  </div>
+
+  <div class="form-group">
+    <label for="seMsg">Source Error Message:</label>
+  </div>
+
+  <div class="form-group">
+    <input type="text" id="seMsg" required name="seMsg" class="full-width" />
+  </div>
+
+  <hr>
+
+  <h4>Add Target Error Details</h4>
+
+  <div class="form-group">
+    <label for="teCode">Target Error Code:</label>
+  </div>
+
+  <div class="form-group">
+    <input type="text" id="teCode" required name="teCode" class="full-width" placeholder="Enter Target Error Code (E.g. 501)" />
+  </div>
+
+  <div class="form-group">
+    <label for="tePhrase">Translated Error Phrase:</label>
+    <label for="teMsg">Translated Error Message:</label>
+  </div>
+
+  <div class="form-group">
+    <input type="text" id="tePhrase" required name="tePhrase" class="half-width" placeholder="Enter Translated Error Phrase" />
+    <input type="text" id="teMsg" required name="teMsg" class="half-width" placeholder="Enter Translated Error Message" />
+  </div>
+
+  <div class="submit-buttons">
+    <input type="submit" value="Add Error">
+    <input type="button" value="Cancel">
+  </div>
+</form>
+<!-- Add the JavaScript code to display the success message -->
+<script>
+  // Function to extract URL parameters
+  function getUrlParameter(name) {
+    name = name.replace(/[[]/, '\\[').replace(/[\]]/, '\\]');
+    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    var results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+  }
+
+  // Function to display success message
+  function displaySuccessMessage() {
+    var successMessage = getUrlParameter('successMessage');
+    if (successMessage !== '') {
+      var successDiv = document.getElementById('successMessage');
+      successDiv.innerHTML = '<p>' + successMessage + '</p>';
+    }
+  }
+
+  // Call the displaySuccessMessage function when the page loads
+  window.onload = displaySuccessMessage;
+</script>
+
+
+</body>
+</html>
+
+
